@@ -1,5 +1,5 @@
 {
-  "name": "underpin/loaders--cron-jobs",
+  "name": "underpin/cron-job-loader",
   "description": "Cron Job Loader for Underpin",
   "type": "library",
   "license": "GPL 2.0",
