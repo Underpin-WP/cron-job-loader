@@ -1,4 +1,4 @@
-# Underpin Cron Job Menu Loader
+# Underpin Cron Job Loader
 
 Loader That assists with adding cron jobs menus to a WordPress website.
 
