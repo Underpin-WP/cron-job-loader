@@ -1,4 +1,4 @@
-# Underpin Cron Job Menu Loader
+# Underpin Cron Job Loader
 
 Loader That assists with adding cron jobs menus to a WordPress website.
 
@@ -20,7 +20,7 @@ Underpin, it should work as-expected.
 1. Install Underpin. See [Underpin Docs](https://www.github.com/underpin/underpin)
 1. Register new cron jobs menus as-needed.
 
-## Admin Menu Example
+## Example
 
 A very basic example could look something like this.
 
