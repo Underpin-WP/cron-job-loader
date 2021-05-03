@@ -28,40 +28,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Cron_Job_Instance extends Cron_Job {
 	use Instance_Setter;
 
+	protected $action_callback;
+
 	/**
 	 * Cron_Job_Instance constructor.
 	 *
-	 * @param callable $action    The event callback
-	 * @param string   $event     The event name
-	 * @param string   $frequency The event frequency
 	 * @param array    $args      Overrides to default args in the Cron_Job object
 	 */
-	public function __construct( $action, $event, $frequency = 'hourly', $args = [] ) {
-		if ( is_callable( $action ) ) {
-			$this->action = $action;
-		} else {
-			$this->action = underpin()->logger()->log_as_error(
-				'error',
-				'invalid_cron_action',
-				'The provided cron job action is invalid',
-				[
-					'action' => $action,
-					'args'   => $args,
-				]
-			);
-		}
-
+	public function __construct( $args = [] ) {
 		$this->set_values( $args );
 
-		parent::__construct( $event, $frequency );
+		parent::__construct( $args['name'], $args['frequency'] );
+
+		var_dump($this->action_callback);
 	}
 
 	function cron_action() {
-		if ( is_wp_error( $this->action ) ) {
-			return false;
-		}
-
-		return call_user_func( $this->action );
+		return $this->set_callable( $this->action_callback );
 	}
 
 }
