@@ -10,6 +10,7 @@
 namespace Underpin_Cron_Jobs\Factories;
 
 
+use Underpin\Traits\Instance_Setter;
 use Underpin_Cron_Jobs\Abstracts\Cron_Job;
 use function Underpin\underpin;
 
@@ -25,14 +26,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Underpin\Abstracts
  */
 class Cron_Job_Instance extends Cron_Job {
+	use Instance_Setter;
 
 	/**
 	 * Cron_Job_Instance constructor.
 	 *
-	 * @param callable $action The event callback
-	 * @param string   $event The event name
+	 * @param callable $action    The event callback
+	 * @param string   $event     The event name
 	 * @param string   $frequency The event frequency
-	 * @param array    $args Overrides to default args in the Cron_Job object
+	 * @param array    $args      Overrides to default args in the Cron_Job object
 	 */
 	public function __construct( $action, $event, $frequency = 'hourly', $args = [] ) {
 		if ( is_callable( $action ) ) {
@@ -49,13 +51,7 @@ class Cron_Job_Instance extends Cron_Job {
 			);
 		}
 
-		// Override default params.
-		foreach ( $args as $arg => $value ) {
-			if ( isset( $this->$arg ) ) {
-				$this->$arg = $value;
-				unset( $args[ $arg ] );
-			}
-		}
+		$this->set_values( $args );
 
 		parent::__construct( $event, $frequency );
 	}
