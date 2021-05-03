@@ -39,8 +39,6 @@ class Cron_Job_Instance extends Cron_Job {
 		$this->set_values( $args );
 
 		parent::__construct( $args['name'], $args['frequency'] );
-
-		var_dump($this->action_callback);
 	}
 
 	function cron_action() {
