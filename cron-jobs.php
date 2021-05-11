@@ -11,4 +11,4 @@ add_action( 'underpin/before_setup', function ( $file, $class ) {
 		'instance' => 'Underpin_Cron_Jobs\Abstracts\Cron_Job',
 		'default'  => 'Underpin_Cron_Jobs\Factories\Cron_Job_Instance',
 	] );
-}, 10, 2 );
+}, 4, 2 );
