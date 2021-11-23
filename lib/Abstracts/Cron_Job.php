@@ -6,11 +6,12 @@
  * @package Underpin\Abstracts
  */
 
-namespace Underpin_Cron_Jobs\Abstracts;
+namespace Underpin\Cron_Jobs\Abstracts;
 
+use Underpin\Loaders\Logger;
 use Underpin\Traits\Feature_Extension;
 use WP_Error;
-use function Underpin\underpin;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -70,7 +71,7 @@ abstract class Cron_Job {
 				// Adds the job to the registry.
 			self::$registered_events[ $this->event ] = $this->frequency;
 		} else {
-			underpin()->logger()->log(
+			Logger::log(
 				'error',
 				'cron_event_exists',
 				__( 'A cron event was not registered because an event of the same name has already been registered.' ),
@@ -99,7 +100,7 @@ abstract class Cron_Job {
 		// If this event is not scheduled, schedule it.
 		if ( ! wp_next_scheduled( $this->event ) ) {
 			wp_schedule_event( time(), $this->frequency, $this->event );
-			underpin()->logger()->log(
+			Logger::log(
 				'notice',
 				'cron_task_activated',
 				'The cron task ' . $this->event . ' has been scheduled'
