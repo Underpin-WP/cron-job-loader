@@ -7,12 +7,12 @@
  */
 
 
-namespace Underpin_Cron_Jobs\Factories;
+namespace Underpin\Cron_Jobs\Factories;
 
 
 use Underpin\Traits\Instance_Setter;
-use Underpin_Cron_Jobs\Abstracts\Cron_Job;
-use function Underpin\underpin;
+use Underpin\Cron_Jobs\Abstracts\Cron_Job;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
